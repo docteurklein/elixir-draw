@@ -2,7 +2,7 @@ defmodule DrawWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", DrawWeb.RoomChannel
+  channel "draw", DrawWeb.DrawChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
