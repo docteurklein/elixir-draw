@@ -15,8 +15,17 @@ use Mix.Config
 # which you typically run after static files are built.
 config :draw, DrawWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [scheme: "https", host: "protected-temple-11537.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  secret_key_base: "1icdmmWNiH5Q9vYq8BV5ZO3bCAgfp9KDGWmWf0dTQU6aECRIgIyd52JpInEEeIMb"
+
+config :draw, Draw.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "draw_prod",
+  pool_size: 15
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -61,4 +70,3 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
